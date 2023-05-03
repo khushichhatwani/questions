@@ -1,0 +1,64 @@
+Write the R commands to do the following: a. Create a numeric, character, integer and logical vector. b. Create two numeric vectors x and y of different lengths. Next, observe the output of 2*x + y - 3. c. Create a sequence of all the odd numbers between 100 and 500. d. Calculate the mean and standard deviation of sequence created in part c. e. Create a list containing a vector, an array and a list. f. Create two multiplication compatible matrices M1 and M2 and display their product. g. Display row-wise and column-wise mean of the matrix M1. h. Combine the matrices M1 and M2 (as in previous part) using rbind/cbind function. i.
+Convert a 3x4 matrix into 2x4 matrix.
+
+
+
+#a)
+numeric.vector<- c(1,2,3,4)
+character.vector<- c('a','b','c','d')
+integer.vector<- c(1L,2L,3L,4L)
+logical.vector<- c(TRUE,FALSE,FALSE,TRUE)
+
+#b)
+x<- c(1,2,3)
+y<- c(4,5,6,7)
+2*x+y-3
+
+#c)
+odd.num<- c()
+for(i in 100:500){
+  if(i%%2!=0){
+    odd.num<-append(odd.num,i)
+  }
+}
+print(odd.num)
+
+#d)
+mean(odd.num)
+sd(odd.num)
+
+#e)
+l<- list(c(1,2,3), array(1:6,dim = c(2,3,1)), list('a','b','c'))
+l
+
+#f)
+m1<- matrix(c(1,4,2,5,3,6),nrow=2,ncol=3)
+m2<- matrix(c(7,8,9,10,11,12),nrow=2,ncol=3)
+m1%*%m2
+
+#g)
+m1
+
+for(i in 1:nrow(m1)){
+  cat(paste("mean of row-",i,":"))
+  cat(mean(m1[i,]),"\n")
+}
+for(i in 1:ncol(m1)){
+  cat(paste("mean of col-",i,":"))
+  cat(mean(m1[,i]),"\n")
+}
+
+
+#h)
+m1
+m2
+new.m1<- rbind(m1,m2)
+new.m1
+new.m2<- cbind(m1,m2)
+new.m2
+
+#i)
+m3x4<- matrix(c(1:12),nrow=3,ncol=4)
+m3x4
+m2x4<- matrix(m3x4,nrow=2,ncol=4)
+m2x4
