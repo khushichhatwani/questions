@@ -1,0 +1,39 @@
+Download the Toy Dataset CSV file available on Kaggle via the link given ( https://www.kaggle.com/carlolepelaars/toy- dataset). Write R commands to do the following: a. Read the CSV into a data frame object. b. Attach the data frame to the environment. c. Count the number of rows with City = New York City. d. Display rows that have top 5 income values. e. Find out the number of rows with income greater than average income. f. Find the highest salary for the female population. g. Randomly select 10 rows from the given dataset. h. Detach the data frame object from
+the environment
+
+#a)
+toy <- read.csv("toy_dataset.csv")
+toy
+
+#b)
+attach(toy)
+
+#c)
+nrow(subset(toy,toy$City=='New York City'))
+
+#d)
+head(toy[order(toy$Income,decreasing=TRUE),],5)
+
+#e)
+nrow(subset(toy,toy$Income>=mean(toy$Income)))
+
+#f) not working
+max<-0
+for(i in 1:nrow(toy)){
+  if(toy[i,3]=='Female'){if(toy[i,5]>max){
+    max<-toy[i,5]
+  } 
+  }
+}
+cat("\n Max Salary of Female Population is :-")
+max
+
+#d<-subset(toy,toy$Gender=='Female')
+#d 
+#head(d[order(d,decreasing=TRUE),],1)
+
+#g)
+toy[sample(nrow(toy), 5),]
+
+#h)
+detach(toy)
