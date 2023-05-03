@@ -1,0 +1,37 @@
+Use the airquality dataset and write R commands to do the following: a. Display the structure of the dataset. b. Display the number of observations and variables in this dataset. c. Display the count of complete rows. d. Display the data for the observation having Temp between 70 and 80. e. Display the count of observations where Month = 5. f. Display first 10 rows of the dataset. g. Display summary of Wind variable. h. Display the complete dataset sorted as per the decreasing order of Temp
+variable. i. Add a new observation to this dataset
+
+#a)
+str(airquality)
+
+#b)
+cat(paste("No. of observations",nrow(airquality)))
+cat(paste("No. of variables",ncol(airquality)))
+
+d<- data.frame(
+  Ozone=c(41,36,12,18,NA),
+  Solar=c(190,11,149,NA,NA),
+  Wind=c(7.4,NA,12.6,11.5,14.9)
+)
+d
+#c)
+nrow(airquality[complete.cases(airquality),])
+
+#d)
+subset(airquality,airquality$Temp>=70 & airquality$Temp<=80)
+
+#e)
+nrow(subset(airquality,airquality$Month==5))
+
+#f)
+head(airquality,10)
+
+#g)
+summary(airquality$Wind)
+
+#h)
+airquality[order(airquality$Temp,decreasing=TRUE),]
+
+#i)
+airquality<-rbind(airquality,c(121,204,9.8,98,9,29))
+airquality
