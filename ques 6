@@ -1,0 +1,25 @@
+Load the built-in iris dataset and write the R commands/script for the following: a. Display the summary statistics for all the variables in the dataset. b. Plot a scatter plot for Sepal length and Sepal width for the species “setosa”. c.
+Annotate the above graph (a) with appropriate X-axis, Y-axis labels and Main title. d. Plot a histogram for the variable Petal.length. e. Create a boxplot for Petal width of Species=versicolor.
+
+#a)
+str(iris)
+
+#b)
+x<-(subset(iris,iris$Species=='setosa'))$Sepal.Length
+y<-(subset(iris,iris$Species=='setosa'))$Sepal.Width
+plot(x, y)
+
+
+#c)
+plot(x, y, main="Scatter plot", xlab="Sepal Length", ylab="Sepal Width", col="red", cex=1)
+
+
+#d)
+p<-iris$Petal.Length
+hist(p,xlab="Petal Length",col="red")
+
+
+#e)
+v<-(subset(iris,iris$Species=='versicolor'))$Petal.Width
+v
+boxplot(v, main="Boxplot of Petal width with species versicolor", col="pink", border="red")
