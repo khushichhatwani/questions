@@ -1,0 +1,37 @@
+Create a tab-delimited file containing the data as shown in the table below and then read this file into a data frame. Write an R script to do the following: a) For each year, display the country with maximum Beer consumption and minimum Wine consumption. b) Find the average alcohol consumption for each country. c) Find the Beer consumption for New Zealand for the year(s) when its spirit consumption was more than the mean spirit consumption. d) Find the average Beer consumption/Wine Consumption/Spirit consumption for each year. e) Plot the mean Beer consumption/mean Wine consumption/mean Spirit
+consumption for each country using a suitable plot
+
+#a)
+d<-data.frame(read.table(file='Q7tabdeliminted.txt',header=TRUE,sep='\t'))
+d
+tapply(d$Beer,d$Year,max)
+
+#b)
+tapply(d$Spirit, d$Country,mean)
+
+#c)
+s1<-c(subset(d$Year,d$Spirit>mean(d$Spirit)))
+s1
+
+s2<-subset(d$Beer,d$Country=='NewZealand' & d$Year %in% s1)
+s2
+
+#d)
+meanfunc<-function(x){
+  tapply(x,d$Year,mean)
+}
+meanfunc(d$Beer)
+meanfunc(d$Wine)
+meanfunc(d$Spirit)
+
+
+#e)
+mean.bear<-tapply(d$Beer, d$Country,mean)
+mean.wine<-tapply(d$Beer, d$Country,mean)
+mean.spirit<-tapply(d$Beer, d$Country,mean)
+data<-as.matrix(data.frame(Australia=c(mean.bear[1],mean.wine[1],mean.wine[1]),
+                           NewZealand=c(mean.bear[2],mean.wine[2],mean.wine[2])))
+
+rownames(data)<-c("Beer","Wine","Spirit")
+data
+barplot(data,col=c("blue","red","yellow"))
