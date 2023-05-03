@@ -1,0 +1,45 @@
+Create a database songs that contains the fields
+{song_name, mood, online_link_play_song}. Create an application where the mood of the user is given as input and the list of songs corresponding to that mood appears as the output. The user can listen to any song form the list via the online link given.
+
+Songs<-data.frame(
+  Song_name=c("Anyone","Love Story","Love me like you do","Blow","Blinding Lights","Man","Say you won't let go","Lovely","A thousand years","Senorita","Fire","Best song ever","On","Scream","I like me better"),
+  Mood=c("Love","happiness","Romance","Energetic","Excited","Proud","Love","Calm","Romance","Love","Energetic","Comedy","Energetic","Energetic","Love" ), 
+  Online_link_Play_Song=c(
+"https://youtu.be/KIK3azN4w34",
+"https://youtu.be/8xg3vE8Ie_E",
+"https://youtu.be/AJtDXIazrMo",
+"https://youtu.be/qCZHarOQvc4",
+"https://youtu.be/4NRXx6U8ABQ",
+"https://youtu.be/AqAJLh9wuZ0",
+"https://youtu.be/0yW7w8F2TVA",
+"https://youtu.be/V1Pl8CzNzCw",
+"https://youtu.be/rtOvBOTyX00",
+"https://youtu.be/Pkh8UtuejGw",
+"https://youtu.be/4ujQOR2DMFM",
+"https://youtu.be/o_v9MY_FMcw",
+"https://youtu.be/gwMa6gpoE9I",
+"https://youtu.be/FKlGHHhTOsQ",
+"https://youtu.be/BcqxLCWn-CE"))
+showmood<-function(v){
+  for(i in 1: nrow(Songs)){
+    if(isTRUE(Songs$Mood[i]==v)){
+      cat(paste("\n ",Songs$Song_name[i]," ------- ",Songs$Online_link_Play_Song[i])) 
+    }
+  } 
+}
+choice<-0
+x<-unique(Songs$Mood)
+while(choice!=2){
+  cat(paste("\n1. Listen To Music\n2. Exit \n"))
+  choice<-as.integer(readline())
+  if(isTRUE(choice==1)){
+    cat("\nEnter Your Current Mood :- ")
+    m1<-readline()
+    showmood(m1) 
+  }else if(isTRUE(choice==2)){
+    cat("\nExiting") 
+    break;
+  }else{
+    cat("\nWrong Choice")
+  } 
+}
